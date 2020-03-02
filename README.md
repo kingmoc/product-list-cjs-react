@@ -85,7 +85,7 @@ Utilizing this object can be tricky in React (*based on life cycle methods and h
 
 Because react rendering can be triggered for many different reasons, it is best practice to wrap our commerce object method calls into a `useEffect()` hook.  This hook acts as the replacment to `componentWillMount()` function when using class components.  By leaving the second argument array empty, this method will run once before the initial render.
 
-This allows to safely store our response in state without triggering mulitple re-rendering.  Using state (*which is basically data storage*) is a big part of React and if you look at this example - we're storing the returned data from the promise into state.
+This allows us to safely store our response in state without triggering mulitple re-rendering.  Using state (*which is basically data storage*) is a big part of React and if you look at this example - we're storing the returned data from the promise into state.
 
 ```javascript
 const commerce = new Commerce('YOUR SANDBOX PUBLIC KEY')
