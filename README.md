@@ -1,13 +1,18 @@
-# Listing Products in a Catalog using Commerce.js (SDK) and React.js
+# Listing products in a catalog using Commerce.js (SDK) and React.js
 
-A quick guide that shows you how to display a list of products using React.js & Commerece.js (SDK)
+This guide illustrates how to display a list of products using React.js & Commerce.js (SDK)
 
-*Note: This guide is using v2*
+[See live demo here.](https://seities-store-cjs-react-guide.netlify.com/)
+
+****** *Note* ******
+
+* *This guide is using v2 of the SDK*
+* *The Live Demo is best viewed on Desktop (**responsiveness limited**)*
 
 ![](src/img/home-screen-shot.JPG)
 
 ## Overview
-The point of this guide is to help developers get familiar with using the Commerce.js SDK in conjunction with React.  Commerce.js is a powerful tool/resource that gives you the ability to build custom eCommerce sites without the headache of building out a lot of the complex functionality that comes along with eCommerce.  This means less experienced developers or eager online entrepreneurs can use these tools and build a more controlled and customized online store without relying on the big players like Shopify. Let's dive in! 
+The purpose of this guide is to help developers get familiar with using the Commerce.js SDK in conjunction with React. Commerce.js is a powerful eCommerce tool that gives you the ability to build custom eCommerce sites without the headache of building out a lot of the complex functionality that comes with eCommerce projects. Commerce.js makes it easier for less experienced developers or eager online entrepreneurs to build a more controlled and customized online store without relying on the big players like Shopify. Let's dive in!
 
 #### This guide will cover: 
 
@@ -16,30 +21,35 @@ The point of this guide is to help developers get familiar with using the Commer
 3. Implementing Commerce.js in a React App
 4. Displaying a list of products on the screen
 
-*This guide will not go into detail about other features/functionality within an eCommerce site such as: adding to cart, product page, checking out etc ... It will simply give a blueprint to how you can display a list of products specifically with React.* 
+*This guide will not go into detail about other features/functionality within an eCommerce site such as: adding to cart, product page, checking out etc ... It will simply give a blueprint to how you can display a list of products specifically with React. Further, this guide strictly utilizes functional react components and relies heavenly on react hooks.*
 
 ### Requirements/Prerequisites
 
 - [ ] IDE of your choice (code editor)
-- [ ] [NodeJS](https://nodejs.org/en/), or [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+- [ ] [NodeJS](https://nodejs.org/en/), or [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable) → npm or yarn.
 - [ ] Some knowledge of Javascript & React
-- [ ] *Bonus* familiarity with the framework Semantic UI
+- [ ] *Bonus* - Using [React Hooks](https://reactjs.org/docs/hooks-reference.html) - specifically `useState()`, `useEffect()`
+- [ ] *Bonus* - familiarity with the framework [Semantic UI (react) library](https://react.semantic-ui.com/)
 
 ## Getting Started
 
 ### STEP 1. Create an account and upload Product Info:
 
-It should be noted that there are two main components, Chec (dashboard) and Commerce.js SDK.  Think of chec as the power, the source of all your customer data, transactions - things of that nature.  Think of the SDK as your way to communicate with your data.  You'll need to create an account [HERE](https://dashboard.chec.io/signup) - once logged in, navigate to products! The only product data you need to get started is: **Name, Image, Price, Description.** 
+It should be noted that there are two main components, Chec (dashboard) and Commerce.js SDK. Think of Chec as the logic layer, the source of all your customer data, transactions - things of that nature. Think of the SDK as your way to communicate with your data. You'll need to create an account [HERE](https://dashboard.chec.io/signup) - once logged in, navigate to products. The only product data you need to get started is: **Name, Image, Price, Description.**
 
 ![](src/img/products-list.JPG)
 
+#### Important Chec Dashboard Features
+
+Once you've added some products check out some of the features in setup.  Important things like developer API keys that can be used if you want to connect directly the Chec API.  Further click on Payment Gateways.  This is where you can enable different payment platforms for processing payments.   
+
 ### STEP 2. React Time! (Getting your App setup):
 
-This is where the fun begins!  This example was done using CRA ([create-react-app](https://create-react-app.dev/docs/getting-started/)).  If you're familiar with React, then you know all about CRA.  If you don't want to fire up a project from scratch, you can fork and clone this repository (make sure to navigate to the proper folder) and run: 
+This is where the fun begins! This example was done using CRA ([create-react-app](https://create-react-app.dev/docs/getting-started/)). If you're familiar with React, then you know all about CRA. If you don't want to fire up a project from scratch, you can fork and clone this repository (make sure to navigate to the proper folder) and run:
 
 `yarn install or npm install`
 
-This will install the necessary dependencies needed for this project.  This also includes the package needed for the Commerce.js SDK. Once installed run `yarn start` to run the app using react's development server.  
+This command will install the necessary dependencies needed for this project. This also includes the package needed for the Commerce.js SDK. Once installed, run `yarn start` to run the app using React's development server.
 
 ##### Installing Commerce.js manually
 
@@ -59,7 +69,7 @@ npm install @chec/commerce.js
 
 ### STEP 3. Using Commerce.js in your Project:
 
-Again, the developers at Commerce.js have done their best to make using this tool simple.  If you take a look in the product container component (product-list-cjs-react/src/components/ProductContainer.js) - this is where the magic happens! In order to connect to the source (your chec dashboard) you must first import the package: 
+Again, the developers at Commerce.js have done their best to make using this tool simple.  If you take a look in the `<ProductContainer />` in this repo (*product-list-cjs-react/src/components/ProductContainer.js*) - this is where the magic happens! In order to connect to the source (***your Chec Dashboard***) you must first import the package: 
 ```
 import Commerce from '@chec/commerce.js'
 ```
@@ -71,13 +81,17 @@ const commerce = new Commerce('YOUR SANDBOX PUBLIC KEY')
 
 #### Using the commerce object
 
-Utilizing this object can be tricky in React (based on life cycle methods and how react renders components) because the commerce object actually is a promise.  In order to handle the promise you must use `.then()` and `.catch()` so that you can process the data.  I won't go to deep on promises and how you handle them, but in this case its acting like an API call.  Because of that we must wrap this promise into a useEffect - so that we can safely store our product info into state.  Using state (which is basically data storage) is a big part of React and if you look at this example - I'm storing the returned data from the promise into state. 
+Utilizing this object can be tricky in React (*based on life cycle methods and how React renders components*) because the methods or functions on the commerce object all return promises.  The way you handle promises is similiar to how you handle API calls by using `.then()` and `.catch()` or `try` in order to process the data. 
+
+Because react rendering can be triggered for many different reasons, it is best practice to wrap our commerce object method calls into a `useEffect()` hook.  This hook acts as the replacment to `componentWillMount()` function when using class components.  By leaving the second argument array empty, this method will run once before the initial render.
+
+This allows to safely store our response in state without triggering mulitple re-rendering.  Using state (*which is basically data storage*) is a big part of React and if you look at this example - we're storing the returned data from the promise into state.
 
 ```javascript
+const commerce = new Commerce('YOUR SANDBOX PUBLIC KEY')
 const [products, setProducts] = useState([])
 
     useEffect(() => {
-        const commerce = new Commerce('YOUR SANDBOX PUBLIC KEY')
         commerce.products.list()
           .then(res => {
             setProducts(res.data)
@@ -85,11 +99,11 @@ const [products, setProducts] = useState([])
           .catch(err => console.log(err))
     },[])
 ```
-If you notice, the setProducts function updates our products variable with all the info from our chec dashboard. 
+If you notice, the setProducts function updates our products variable with all the info from our Chec Dashboard. 
 
 ### STEP 4. Displaying the Product Info:
 
-We now have a variable `products` which is an array of objects and each object being a particular product. We want to to take that data a display it for the world to see! I choose to map of over the array and pass down each product data as a prop to the ProductCard component. 
+We now have a variable `products` which is an array of objects and each object being a particular product. We want to take that data and display it for the world to see! Let's map over the array and pass down each product data as a prop to the `<ProductCard />` component.
 
 ```javascript
  return (
@@ -118,15 +132,33 @@ const ProductCard = ({product}) => {
 };
 ```
 
+#### Shape of Product Object
+![](src/img/product-shape.JPG)
+
+[Link to API Product Resource](https://commercejs.com/docs/api/?javascript#list-all-products)
+
+
 #### Conclusion 
 
-Well there you have it.  A quick guide to getting your products to display using React.  As you can see, it doesn't take much to get some products listed on your site.  Commerce.js has done their best to make building an eCommerce site fun and easy.  I really hope this guide helps get you started with whatever project you hope build.
+Well there you have it.  A quick guide to getting your products to display using React.  As you can see, it doesn't take much to get some products listed on your site.  
 
-[LIVE DEMO](https://product-list-cjs-react.netlify.com/)
+Let's take a step back and quickly summarize what we acommplished.
+
+- Created a Chec account and added products
+- Created a React project and installed the Commerce.js SDK
+- Using the SDK and injecting the commerce object into our project 
+- Using the reponse to display product info on the page
+
+If you're ready for the next step - check out the next guide: 
+
+-> [Adding Products To the Cart](https://github.com/kingmoc/adding-products-cart-cjs-react)
+
+[LIVE DEMO](https://seities-store-cjs-react-guide.netlify.com/)
 
 ## Built With
 
 * [React.Js](https://reactjs.org/docs/getting-started.html)
 * [Semantic-UI](https://react.semantic-ui.com/)
+* [Commerce.js (SDK)](https://commercejs.com/docs/)
 
 
