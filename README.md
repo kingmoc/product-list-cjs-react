@@ -16,12 +16,12 @@ The purpose of this guide is to help developers get familiar with using the Comm
 
 #### This guide will cover: 
 
-1. Adding Products to your chec dashboard
+1. Adding Products to the Chec Dashboard
 2. Using the Commerce.js SDK to access dashboard data
 3. Implementing Commerce.js in a React App
 4. Displaying a list of products on the screen
 
-*This guide will not go into detail about other features/functionality within an eCommerce site such as: adding to cart, product page, checking out etc ... It will simply give a blueprint to how you can display a list of products specifically with React. Further, this guide strictly utilizes functional react components and relies heavenly on react hooks.*
+*This guide will not go into detail about other features/functionality within an eCommerce site such as: adding to cart, product page, checking out etc ... It will simply give a blueprint to how you can display a list of products specifically with React. Further, this guide strictly utilizes functional React components and relies heavenly on React Hooks.*
 
 ### Requirements/Prerequisites
 
@@ -33,7 +33,7 @@ The purpose of this guide is to help developers get familiar with using the Comm
 
 ## Getting Started
 
-### STEP 1. Create an account and upload Product Info:
+### STEP 1. Create a Chec account and upload Product Info:
 
 It should be noted that there are two main components, Chec (dashboard) and Commerce.js SDK. Think of Chec as the logic layer, the source of all your customer data, transactions - things of that nature. Think of the SDK as your way to communicate with your data. You'll need to create an account [HERE](https://dashboard.chec.io/signup) - once logged in, navigate to products. The only product data you need to get started is: **Name, Image, Price, Description.**
 
@@ -53,7 +53,7 @@ This command will install the necessary dependencies needed for this project. Th
 
 ##### Installing Commerce.js manually
 
-One of the great things about this SDK is its ease of use.  Getting what you need into the project is very simple.
+One of the great things about the Commerce.js SDK is its ease of use.  Getting what you need into the project is very simple.
 
 1. [Installing via CDN](https://commercejs.com/docs/overview/getting-started.html)
 
@@ -83,9 +83,9 @@ const commerce = new Commerce('YOUR SANDBOX PUBLIC KEY')
 
 Utilizing this object can be tricky in React (*based on life cycle methods and how React renders components*) because the methods or functions on the commerce object all return promises.  The way you handle promises is similiar to how you handle API calls by using `.then()` and `.catch()` or `try` in order to process the data. 
 
-Because react rendering can be triggered for many different reasons, it is best practice to wrap our commerce object method calls into a `useEffect()` hook.  This hook acts as the replacment to `componentWillMount()` function when using class components.  By leaving the second argument array empty, this method will run once before the initial render.
+Because React rendering can be triggered for many different reasons, it is best practice to wrap our commerce object method calls into a `useEffect()` hook.  This hook acts as the replacment to `componentWillMount()` function when using class components.  By leaving the second argument array empty, this method will run once before the initial render.
 
-This allows us to safely store our response in state without triggering mulitple re-rendering.  Using state (*which is basically data storage*) is a big part of React and if you look at this example - we're storing the returned data from the promise into state.
+This allows you to safely store the response in state without triggering mulitple re-rendering.  Using state (*which is basically data storage*) is a big part of React and if you look at this example - we are storing the returned data from the promise into state.
 
 ```javascript
 const commerce = new Commerce('YOUR SANDBOX PUBLIC KEY')
@@ -103,7 +103,7 @@ If you notice, the setProducts function updates our products variable with all t
 
 ### STEP 4. Displaying the Product Info:
 
-We now have a variable `products` which is an array of objects and each object being a particular product. We want to take that data and display it for the world to see! Let's map over the array and pass down each product data as a prop to the `<ProductCard />` component.
+You now have a variable `products` which is an array of objects and each object being a particular product. You next want to take that data and display it for customers to see! Let's map over the array and pass down each product data as a prop to the `<ProductCard />` component.
 
 ```javascript
  return (
@@ -116,7 +116,7 @@ We now have a variable `products` which is an array of objects and each object b
     );
 ```
 
-Here's a look at the ProductCard Component where I'm parsing the data I need for display: 
+Here's a look at the ProductCard Component where we have parsed the data we need for the display: 
 
 ```javascript
 const ProductCard = ({product}) => {
