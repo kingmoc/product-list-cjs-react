@@ -1,4 +1,4 @@
-# Listing products in a catalog using Commerce.js (SDK) and React.js
+# Listing products in a catalogue using React.js and Commerce.js SDK
 
 This guide illustrates how to display a list of products using React.js & Commerce.js (SDK)
 
