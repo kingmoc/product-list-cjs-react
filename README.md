@@ -142,7 +142,7 @@ const ProductCard = ({product}) => {
 
 Well there you have it.  A quick guide to getting your products to display using React.  As you can see, it doesn't take much to get some products listed on your site.  
 
-Let's take a step back and quickly summarize what we acommplished.
+Let's take a step back and quickly summarize what we accommplished.
 
 - Created a Chec account and added products
 - Created a React project and installed the Commerce.js SDK
