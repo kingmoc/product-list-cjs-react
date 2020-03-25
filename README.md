@@ -2,7 +2,7 @@
 
 This guide illustrates how to display a list of products using React.js & Commerce.js (SDK)
 
-* [Live demo for this Guide: "***Listing products in catalogue***"](https://github.com/kingmoc/product-list-cjs-react)
+* [Live demo for this Guide: "***Listing products in catalogue***"](https://listing-products-commercejs.netlify.com/)
 * [Live demo for entire integration (storefront > cart > checkout)](https://seities-store-cjs-react-guide.netlify.com/)
 
 
