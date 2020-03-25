@@ -155,7 +155,11 @@ If you're ready for the next step - check out the next guide:
 
 -> [Adding Products To the Cart](https://github.com/kingmoc/adding-products-cart-cjs-react)
 
-[LIVE DEMO](https://seities-store-cjs-react-guide.netlify.com/)
+___
+
+[Live demo for this Guide: "***Listing products in catalogue***"](https://listing-products-commercejs.netlify.com/)
+
+[Live demo for entire integration (storefront > cart > checkout)](https://seities-store-cjs-react-guide.netlify.com/)
 
 ## Built With
 
